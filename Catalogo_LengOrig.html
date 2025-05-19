@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Lenguas Originarias del Perú</title>
+    <style>
+        body {
+            background-color: #e9f7ef;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-image-top {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        header img {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #1d5c42;
+            text-align: center;
+        }
+
+        .filtro {
+            text-align: center;
+            margin: 20px auto;
+            padding: 0 20px;
+            max-width: 1200px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #1d5c42;
+            border-radius: 5px;
+        }
+
+        .catalogo {
+            display: grid;
+            /* Permite más items por fila en pantallas más anchas */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        /* Estilo específico para los títulos de los libros */
+        .titulo-libro {
+            color: #1d5c42; /* Verde oscuro */
+            font-weight: bold;
+            text-align: center; /* Centrar el texto */
+            margin: 10px 0; /* Espacio arriba y abajo */
+            font-size: 16px; /* Un poco más grande para destacar */
+        }
+
+        .campo-titulo {
+            color: #1d5c42;
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+            font-size: 14px;
+        }
+
+        .contenido {
+            color: #4a4a4a;
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+            list-style-type: disc;
+        }
+
+        li {
+            margin-bottom: 3px;
+            color: #4a4a4a;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #1d5c42;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.imgur.com/Aj87LTw.png" alt="Imagen decorativa superior" class="header-image-top">
+
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Logo_de_la_Biblioteca_Nacional_del_Per%C3%BA.png" alt="Biblioteca Nacional del Perú">
+        <h1>Catálogo de Lenguas Originarias del Perú</h1>
+    </header>
+
+    <div class="filtro">
+        <select id="filtroLengua" onchange="filtrarPorLengua()">
+            <option value="todas">Todas las lenguas</option>
+            <option value="Quechua">Quechua</option>
+            <option value="Amahuaca">Amahuaca</option>
+            <option value="Ocaina">Ocaina</option>
+            <option value="Ikitu">Ikitu</option>
+            <option value="Kapanawa">Kapanawa</option>
+            <option value="Arabela">Arabela</option>
+            <option value="Murui-Muinanɨ">Murui-Muinanɨ</option>
+            <option value="Chamikuro">Chamikuro</option>
+            <option value="Secoya">Secoya</option>
+            <option value="Matsés">Matsés</option>
+            <option value="Kandozi-Chapra">Kandozi-Chapra</option>
+            <option value="Aimara">Aimara</option>
+            <option value="Ashaninka">Ashaninka</option>
+            <option value="Urarina">Urarina</option>
+            <option value="Kakataibo">Kakataibo</option>
+            <option value="Kukama-kukamiria">Kukama-kukamiria</option>
+            <option value="Varios">Varios</option>
+        </select>
+    </div>
+
+    <div class="catalogo" id="catalogo">
+        <script>
+            const datos = [
+                {
+                    titulo: "Ashmakuna : cartillas de animales quechua central - inicial",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7347/ashmakuna_qc.png?sequence=3&isAllowed=y",
+                    autor: "Díaz Tamara, Lucinda Ernestina",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto en quechua central y español",
+                    materias: ["Libros de lectura - I.I.", "Lengua quechua - Libros de lectura", "Animales - Traducciones al quechua", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7347",
+                    lengua: "Quechua"
+                },
+                {
+                    titulo: "Tarjetas con relatos en lengua originaria amahuaca",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7506/relatos_amahuaca.png?sequence=3&isAllowed=y",
+                    autor: "Meléndez Piño, Carlos, 1965-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua amahuaca - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Acosta Peláez, Gonzalo Alonso Alejandro, 1995-", "Bejarano Scamarone, Piero, 1981-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7506",
+                    lengua: "Amahuaca"
+                },
+                {
+                    titulo: "Tarjetas con relatos en lengua originaria ocaina",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7509/tarjetas_ocaina.png?sequence=3&isAllowed=y",
+                    autor: "Mogoma Sánchez, Enoc Lavan, 1983-",
+                    editorial: "Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua ocaina - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Suclupe Navarro, Pier Fausto", "Cuadros Oriundo, Carlos, 1959-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7509",
+                    lengua: "Ocaina"
+                },
+                {
+                    titulo: "Tarjeta con relatos en lengua originaria ikíitu",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7522/relatos_ikitu.png?sequence=3&isAllowed=y",
+                    autor: "Huamancayo Curi, Edinson Ysrael, 1976-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua ikitu - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Torres Romaní, George, 1989-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7522",
+                    lengua: "Ikitu"
+                },
+                {
+                    titulo: "Tarjetas con relatos en lengua originaria kapanawa",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7518/tarjetas_kapanawa.png?sequence=3&isAllowed=y",
+                    autor: "Huaninche Sachivo, Humberto, 1960-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua capanahua - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Tello Ataucuri, Edson, 1991-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7518",
+                    lengua: "Kapanawa"
+                },
+                {
+                    titulo: "Tarjetas con relatos - arabela",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7515/pweyano.png?sequence=3&isAllowed=y",
+                    autor: "Pastor Rosero, Edgar",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua arabela - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Vargas Flores, Karin Juliet, 1976-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7515",
+                    lengua: "Arabela"
+                },
+                {
+                    titulo: "Tarjetas con relatos en lengua originaria quechua central (variante wanka)",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7497/utuluwan.png?sequence=3&isAllowed=y",
+                    autor: "Sánchez Palma, Luis Alberto, 1965-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Texto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Sierra - Láminas", "Lengua quechua - Láminas", "Tradición oral - Perú - Región de la Sierra", "Libros electrónicos"],
+                    colaboradores: ["Tovar Gonzales, Nila, 1969-", "Valverde Valverde, Francisco Desiderio, 1976-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7497",
+                    lengua: "Quechua"
+                },
+                {
+                    titulo: "Wanka achawaya (chawpi qichwa)",
+                    imagen: "https://i.imgur.com/eTXfSdY.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario",
+                    materias: ["Abecedarios - Láminas", "Lengua quechua - Perú - Junín - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Sánchez Palma, Luis Alberto, 1965-", "Tovar Gonzales, Nila, 1969-", "Reymundo Vega, Juan U, 1952-, revisor"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10144/Lamina%20de%20alfabeto%20-%20quechua%20wanka.pdf?sequence=1&isAllowed=y",
+                    lengua: "Quechua"
+                },
+                {
+                    titulo: "Kai ñaiafue ifodino",
+                    imagen: "https://i.imgur.com/xbJd74R.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario",
+                    materias: ["Abecedarios - Láminas", "Lengua murui-muinani - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Gómez Puente, Richard, 1977-", "Falcón Barriga, Gloria Myriam, 1973-, revisor"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10143/Lamina%20de%20alfabeto%20-%20murui-munani.pdf?sequence=1&isAllowed=y",
+                    lengua: "Murui-Muinanɨ"
+                },
+                {
+                    titulo: "Ocaina jumahxa - alfabeto ocaina",
+                    imagen: "https://i.imgur.com/uTyjeq2.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario",
+                    materias: ["Abecedarios - Láminas", "Lengua ocaina - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Mogoma Sánchez, Enoc Lavan, 1983-", "Suclupe Navarro, Pier Fausto", "Cuadros Oriundo, Carlos, 1959-, ilustrador"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10140/Lamina%20de%20alfabeto%20-%20ocaina.pdf?sequence=1&isAllowed=y",
+                    lengua: "Ocaina"
+                },
+                {
+                    titulo: "Alfabeto chamikuro",
+                    imagen: "https://i.imgur.com/r4PJPBS.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario",
+                    materias: ["Abecedarios - Láminas", "Lengua chamicuro - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Silva Villegas, Gema Celeste, 1990-"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10142/L%c3%a1mina%20de%20alfabeto-Chamikuro.pdf?sequence=1&isAllowed=y",
+                    lengua: "Chamikuro"
+                },
+                {
+                    titulo: "Abacha kapanawa",
+                    imagen: "https://i.imgur.com/ZcLGk5o.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario",
+                    materias: ["Abecedarios - Láminas", "Lengua capanahua - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Huaninche Sachivo, Humberto, 1960-", "Tello Ataucuri, Edson, 1991-, ilustrador"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10139/L%C3%A1mina%20de%20alfabeto%20-%20kapanawa.pdf?sequence=1&isAllowed=y",
+                    lengua: "Kapanawa"
+                },
+                {
+                    titulo: "Aikokoa : këaye",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10147/aikokoa.png?sequence=3&isAllowed=y",
+                    autor: "Magallanes Cabrera, Mauricio, 1970-",
+                    editorial: "",
+                    notas: "Colección de relatos",
+                    materias: ["Cuentos folclóricos peruanos - Amazonía.", "Cuentos infantiles peruanos - Amazonía.", "Lengua secoya - Libros de lectura.", "Libros electrónicos"],
+                    colaboradores: ["Bejarano Scamarone, Piero, 1981-, ilustrador"],
+                    entidades: "Perú. Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://hdl.handle.net/20.500.12799/10147",
+                    lengua: "Secoya"
+                },
+                {
+                    titulo: "Ta'ñë kaña : kokua",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10146/ta%c3%b1e.png?sequence=3&isAllowed=y",
+                    autor: "Magallanes Cabrera, Mauricio, 1970-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Colección de adivinanzas y poemas",
+                    materias: ["Adivinanzas - Literatura infantil", "Poesías infantiles peruanas - Amazonía", "Lengua secoya - Libros de lectura", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://hdl.handle.net/20.500.12799/10146",
+                    lengua: "Secoya"
+                },
+                {
+                    titulo: "Ëden icampid chied : historias y relatos - matsés, inicial",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7312/eden.png?sequence=3&isAllowed=y",
+                    autor: "Jiménez Moconoqui, Vicente Tumi",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Texto para educación inicial",
+                    materias: ["Libros de lectura - I.I.", "Lengua matsés - Libros de lectura", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7312",
+                    lengua: "Matsés"
+                },
+                {
+                    titulo: "Tsiyatsis sirapchewa anmunsha zitamin kamanshini : historias y relatos chapra",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7318/tsiyatsis.png?sequence=3&isAllowed=y",
+                    autor: "Totarica Mando, Mateo, 1975-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "",
+                    materias: ["Libros de lectura - I.I.", "Lengua kandozi-chapra - Libros de lectura", "Libros electrónicos"],
+                    colaboradores: ["Bejarano Herquinigo, Jean Pool, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7318",
+                    lengua: "Kandozi-Chapra"
+                },
+                {
+                    titulo: "Ikíitu kuwasíini atákika",
+                    imagen: "https://i.imgur.com/FmBpBqY.png",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Educación, 2021",
+                    notas: "Abecedario\nIncluye referencias bibliográficas",
+                    materias: ["Abecedarios - Láminas", "Lengua ikitu - Alfabeto", "Libros electrónicos"],
+                    colaboradores: ["Huamancayo Curi, Edinson Ysrael, 1976-", "Bejarano Scamarone, Piero, 1981-, ilustrador"],
+                    entidades: "Perú. Ministerio de Educación, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10138/Lamina%20de%20alfabeto%20-%20ikitu.pdf?sequence=1&isAllowed=y",
+                    lengua: "Ikitu"
+                },
+                {
+                    titulo: "Mai jëjëñe",
+                    imagen: "https://i.imgur.com/T9xJILl.png",
+                    autor: "Sandoval Cabrera, Robinson, 1984-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "",
+                    materias: ["Canciones infantiles - Perú", "Canciones folclóricas - Perú - Amazonía", "Lengua secoya - Libros de lectura", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10126/Mai%20j%c3%abj%c3%ab%c3%b1e%20-%20Secoya.%20Nuestros%20cantos%20-%20secoya.pdf?sequence=1&isAllowed=y",
+                    lengua: "Secoya"
+                },
+                {
+                    titulo: "Nún shakuti kama : kakataibo",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10116/shakuti.png?sequence=3&isAllowed=y",
+                    autor: "Bolívar Jacovo, Yonatan",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "",
+                    materias: ["Canciones infantiles - Perú - Amazonía", "Lengua kakataibo - Libros de lectura"],
+                    colaboradores: ["Cruz Antazú, Ian Dany, 1983-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/10116",
+                    lengua: "Kakataibo"
+                },
+                {
+                    titulo: "Urqutanpu",
+                    imagen: "https://i.imgur.com/DRvreR9.png",
+                    autor: "",
+                    editorial: "",
+                    notas: "Año 1, número 1 (julio 2021)-",
+                    materias: ["Folclore - Perú - Apurímac - Publicaciones periódicas", "Apurímac (Perú : Departamento) - Vida y costumbres sociales - Publicaciones periódicas", "Apurímac (Perú : Departamento) - Descripciones y viajes - Publicaciones periódicas", "Revistas electrónicas"],
+                    colaboradores: ["Huayhua Mamani, Hilda, editor"],
+                    entidades: "",
+                    enlace: "https://drive.google.com/file/d/1-xuI-Foy4EFdjv5-PQs-zdPdOgDNJGBQ/view?fbclid=IwAR0YOSUUF_RtBag3Fk8QSOxG7L8SINUOiKIH6NfVy48i-S4ziXLF-TsbyJs",
+                    lengua: "Quechua"
+                },
+                {
+                    titulo: "Utana lusa imaña yatiqaña",
+                    imagen: "https://i.imgur.com/BMAgfhr.png",
+                    autor: "Perca Chagua, Roxana Carolina, 1985-",
+                    editorial: "Tacna : Editores Académicos, 2024",
+                    notas: "",
+                    materias: ["Cuentos folclóricos peruanos", "Cuentos infantiles aimaras - Perú", "Cuentos infantiles peruanos - Siglo XXI", "Libros electrónicos"],
+                    colaboradores: ["Peláez Alférez, Mercy", "Lupaca Arias, Denís Anny", "Flores Jinez, Rosa Lina, 1976-"],
+                    entidades: "",
+                    enlace: "https://www.editoresacademicos.com/wp-content/uploads/2024/06/Utana-lusa-imana-yatiqana_FINAL-PDF.pdf",
+                    lengua: "Aimara"
+                },
+                {
+                    titulo: "200 maranaka ukata : yatiqirinaka jisk’tapxi, jakawi yatiri qillqirinakaxa kutt’ayapxi",
+                    imagen: "https://bicentenario.gob.pe/biblioteca/storage/app/uploads/public/640/266/dce/thumb_682_361_0_0_0_auto.jpeg",
+                    autor: "",
+                    editorial: "Lima : Ministerio de Cultura, 2021",
+                    notas: "Traducción de: 200 años después : los escolares preguntan, los historiadores responden",
+                    materias: ["Historia - Estudio y enseñanza - Perú", "Historia - Preguntas y respuestas", "Perú - Historia - Emancipación, 1808-1824 - Preguntas y respuestas", "Libros electrónicos"],
+                    colaboradores: ["Flores Apaza, Carolino, 1983-, traductor", "Ordinola, Fátima, ilustrador"],
+                    entidades: "Perú. Ministerio de Cultura, entidad editora\nProyecto Especial Bicentenario de la Independencia del Perú, entidad editora",
+                    enlace: "https://bicentenario.gob.pe/biblioteca/detalle-libro/200-maranaka-ukata",
+                    lengua: "Aimara"
+                },
+                {
+                    titulo: "Política Nacional Multisectorial irashi Jananekipe aisati Ebankarinentatsiri aretyaro osarentsiki 2030",
+                    imagen: "https://i.imgur.com/0WgShL8.png",
+                    autor: "Perú. Ministerio de la Mujer y Poblaciones Vulnerables. Dirección de Políticas de Niñas, Niños y Adolescentes, autor",
+                    editorial: "Lima : Ministerio de la Mujer y Poblaciones Vulnerables, 2024",
+                    notas: "Bicentenario Perú 2024",
+                    materias: ["Perú. [D.S. no. 008-2021-MIMP : 25-06-2021]", "Bienestar infantil - Perú - Planificación", "Niños - Política gubernamental - Perú", "Adolescentes - Política gubernamental - Perú", "Derechos del niño - Aspectos sociales - Perú", "Adolescentes - Derechos civiles - Perú", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Ministerio de la Mujer y Poblaciones Vulnerables, entidad editora",
+                    enlace: "https://cdn.www.gob.pe/uploads/document/file/5117509/4625053-pnmnna_para_ninos_en_ashaninka.pdf?v=1726065153",
+                    lengua: "Ashaninka"
+                },
+                {
+                    titulo: "Wawa wayna tawaqunakataki 2030 marakama Política Nacional Multisectorial sata",
+                    imagen: "https://i.imgur.com/w7ZLxi7.png",
+                    autor: "Perú. Ministerio de la Mujer y Poblaciones Vulnerables. Dirección de Políticas de Niñas, Niños y Adolescentes, autor",
+                    editorial: "Lima : Ministerio de la Mujer y Poblaciones Vulnerables, 2024",
+                    notas: "Bicentenario Perú 2024",
+                    materias: ["Perú. [D.S. no. 008-2021-MIMP : 25-06-2021]", "Bienestar infantil - Perú - Planificación", "Niños - Política gubernamental - Perú", "Adolescentes - Política gubernamental - Perú", "Derechos del niño - Aspectos sociales - Perú", "Adolescentes - Derechos civiles - Perú", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Perú. Ministerio de la Mujer y Poblaciones Vulnerables, entidad editora",
+                    enlace: "https://cdn.www.gob.pe/uploads/document/file/5117510/4625053-pnmnna_para_ninos_en_aimara.pdf",
+                    lengua: "Aimara"
+                },
+                {
+                    titulo: "Kanüüacha kuitüküüi rüüanü naja : urarina",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/10129/diccionario_urarina.png?sequence=3&isAllowed=y",
+                    autor: "Nuribe Arahuate, Humberto, 1977-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "",
+                    materias: ["Lengua urarina - Glosarios, vocabularios, etc.", "Lengua urarina - Textos escolares", "Libros electrónicos"],
+                    colaboradores: ["Tello Ataucuri, Edson, 1991-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/10129",
+                    lengua: "Urarina"
+                },
+                {
+                    titulo: "Tarjetas de relatos chamicuro",
+                    imagen: "https://repositorio.minedu.gob.pe/bitstream/handle/20.500.12799/7503/tarjetas_chamicuro.png?sequence=3&isAllowed=y",
+                    autor: "Silva Villegas, Gema Celeste, 1990-",
+                    editorial: "Lima : Ministerio de Educación, Dirección General de Educación Básica Alternativa, Intercultural Bilingüe y de Servicios Educativos en el Ámbito Rural, Dirección de Educación Intercultural Bilingüe, 2021",
+                    notas: "Tarjetas con relatos en lengua originaria chamicuro.\nTexto para estudiantes del III ciclo de Educación Primaria de la EIB",
+                    materias: ["Cuentos folclóricos peruanos - Región de la Selva - Láminas", "Lengua chamicuro - Láminas", "Tradición oral - Perú - Amazonía", "Libros electrónicos"],
+                    colaboradores: ["Saldarriaga Vallejos, Eddy Israel, 1992-, ilustrador"],
+                    entidades: "Perú. Dirección de Educación Intercultural Bilingüe, entidad editora",
+                    enlace: "https://repositorio.minedu.gob.pe/handle/20.500.12799/7503",
+                    lengua: "Chamikuro"
+                },
+                {
+                    titulo: "Guardianes del agua : el pueblo kukama-kukamiria, los seres del agua y los impactos ambientales",
+                    imagen: "https://caaap.org.pe/wp-content/uploads/2025/01/Guaridianes-del-agua-caaap.png",
+                    autor: "Vargas, Oscar, 1997-",
+                    editorial: "Lima : Centro Amazónico de Antropología y Aplicación Práctica, 2024",
+                    notas: "Texto en español con algunas frases en lengua kukama-kukamiria.\nBibliografía: páginas 56-61.",
+                    materias: ["Comunidades nativas - Perú - Región de la Selva - Vida y costumbres sociales", "Agua - Aspectos sociales - Perú - Amazonía", "Cosmología indígena - Perú - Amazonía", "Protección ambiental - Perú - Amazonía - Participación ciudadana", "Desarrollo sostenible - Perú - Amazonía", "Consulta previa (Derecho internacional) - Perú - Amazonía", "Amazonas, Río - Condiciones económicas", "Amazonas, Río - Condiciones ambientales", "Libros electrónicos"],
+                    colaboradores: ["Regan, Jaime, 1941-, autor"],
+                    entidades: "Centro Amazónico de Antropología y Aplicación Práctica (Lima), entidad editora",
+                    enlace: "https://caaap.org.pe/producto/guardianes-del-agua-el-pueblo-kukama-kukamiria-los-seres-del-agua-y-los-impactos-ambientales/",
+                    lengua: "Kukama-kukamiria"
+                },
+                {
+                    titulo: "Voces del Perú : memoria y tradición oral",
+                    imagen: "https://bicentenario.gob.pe/biblioteca/storage/app/uploads/public/64f/f24/c32/thumb_788_361_0_0_0_auto.png",
+                    autor: "Helfgott Seier, Federico",
+                    editorial: "Lima : Ministerio de Cultura, Proyecto Especial Bicentenario de la Independencia del Perú, 2024",
+                    notas: "Bibliografía: páginas 213-222",
+                    materias: ["Literatura folclórica peruana", "Tradición oral - Perú", "Usos y costumbres - Perú", "Libros electrónicos"],
+                    colaboradores: [],
+                    entidades: "Lino Cornejo, Elizabeth, 1973-, autor\nProyecto Especial Bicentenario de la Independencia del Perú, entidad editora",
+                    enlace: "https://bicentenario.gob.pe/biblioteca/detalle-libro/voces-del-peru-memoria-y-tradicion-oral",
+                    lengua: "Varios"
+                },
+                {
+                    titulo: "Guía para la implementación de señalética en lenguas indígenas u originarias en las instituciones que brindan servicios públicos del Perú",
+                    imagen: "https://website-assets.studocu.com/img/document_thumbnails/00466b39c8d1bc54fee3e5e99d6354d7/thumb_1200_1696.png",
+                    autor: "García Chinchay, Gerardo Manuel, 1982-",
+                    editorial: "Puno : Ministerio de Cultura, 2021",
+                    notas: "Glosario: páginas 4-5\nReferencias bibliográficas: páginas 43-45",
+                    materias: ["Lenguas indígenas - Perú - Señales y señalización", "Instituciones públicas - Perú - Señales y señalización", "Servicios públicos - Política gubernamental - Perú", "Interculturalidad - Perú", "Libros electrónicos"],
+                    colaboradores: ["Reyes Arana, Alexandra", "Alata Ramos, Guipsy", "Bendezú Bendezú, Lee", "Echaccaya Taboada, Edith"],
+                    entidades: "Perú. Ministerio de Cultura, entidad editora",
+                    enlace: "https://centroderecursos.cultura.pe/sites/default/files/rb/pdf/Gu%C3%ADa%20de%20se%C3%B1al%C3%A9tica_F_compressed.pdf",
+                    lengua: "Varios"
+                }
+            ];
+
+            function crearItem(item) {
+                function formatList(items) {
+                    if (!items || (Array.isArray(items) && items.length === 0) || (typeof items === 'string' && items.trim() === '')) {
+                        return null;
+                    }
+                    const listItems = Array.isArray(items) ? items : items.split(/<br>|\n/);
+                    const filteredItems = listItems.filter(li => li.trim() !== '');
+                     if (filteredItems.length === 0) {
+                         return null;
+                    }
+                    return `<ul>${filteredItems.map(li => `<li>${li.trim()}</li>`).join('')}</ul>`;
+                }
+
+                const materiasList = formatList(item.materias);
+                const colaboradoresList = formatList(item.colaboradores);
+
+                return `
+                    <div class="item" data-lengua="${item.lengua}">
+                        <img src="${item.imagen}" alt="${item.titulo}">
+                        <div class="titulo-libro">${item.titulo}</div>
+
+                        ${item.autor ? `
+                            <div class="campo-titulo">Autor:</div>
+                            <div class="contenido">${item.autor}</div>
+                        ` : ''}
+
+                        <div class="campo-titulo">Editorial:</div>
+                        <div class="contenido">${item.editorial}</div>
+
+                        ${item.notas ? `
+                            <div class="campo-titulo">Notas:</div>
+                            <div class="contenido">${item.notas}</div>
+                        ` : ''}
+
+                        ${materiasList ? `
+                            <div class="campo-titulo">Materias:</div>
+                            ${materiasList}
+                        ` : ''}
+
+                        ${colaboradoresList ? `
+                            <div class="campo-titulo">Colaboradores:</div>
+                            ${colaboradoresList}
+                        ` : ''}
+
+                        ${item.entidades ? `
+                            <div class="campo-titulo">Entidades:</div>
+                            <div class="contenido">${item.entidades}</div>
+                        ` : ''}
+
+                        <div class="campo-titulo">Lengua:</div>
+                        <div class="contenido">${item.lengua}</div>
+
+                        <a href="${item.enlace}" target="_blank"><button>Ver recurso</button></a>
+                    </div>
+                `;
+            }
+
+            function cargarCatalogo() {
+                const contenedor = document.getElementById('catalogo');
+                contenedor.innerHTML = datos.map(crearItem).join('');
+            }
+
+            function filtrarPorLengua() {
+                const lengua = document.getElementById('filtroLengua').value;
+                const items = document.querySelectorAll('.item');
+
+                items.forEach(item => {
+                    item.style.display = (lengua === 'todas' || item.dataset.lengua === lengua)
+                        ? 'block'
+                        : 'none';
+                });
+            }
+
+            cargarCatalogo();
+        </script>
+    </div>
+</body>
+</html>
